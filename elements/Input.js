@@ -34,6 +34,7 @@ Input.defaultProps = {
   label: false,
   placeholder: "텍스트를 입력해주세요.",
   type: "text",
+  value: "",
   _onChange: () => {},
 };
 

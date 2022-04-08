@@ -7,12 +7,13 @@ import { auth } from "../../shared/firebase";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
-// actions
+// 액션타입
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
+//유저정보 넣는 것. 로그인이든 회원가입이든 같기에 통일!
 const SET_USER = "SET_USER";
 
-// action creators
+// 액션생성자_액션생성함수들
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));

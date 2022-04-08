@@ -6,6 +6,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 const PostList = (props) => {
   //initialState에서 불러오기
   const post_list = useSelector((state) => state.post.list);
+  //수정하기 위해서 내가 맞는지 아닌지 확인해주기 위해서
   const user_info = useSelector((state) => state.user.user);
   console.log(post_list);
 
@@ -18,6 +19,7 @@ const PostList = (props) => {
   return (
     <React.Fragment>
       {post_list.map((p, idx) => {
+        //p는 user_info
         if (user_info && p.user_info.user_id === user_info.uid) {
           return <Post key={p.id} {...p} is_me />;
         } //p는 게시글의 모든 정보_post에 게시글 정보 남겨주기!

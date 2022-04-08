@@ -10,18 +10,23 @@ const PostWrite = (props) => {
   const dispatch = useDispatch();
   //50번째 줄 확인 로그인이 안되어있으면 로그인 페이지로 가게끔
   const is_login = useSelector((state) => state.user.is_login);
+  //이미지 가져와서 넣어주기!
   const preview = useSelector((state) => state.image.preview);
+  //포스트리스트가져오기
   const post_list = useSelector((state) => state.post.list);
-
+  //아래의 아이디를 통해 수정중인지 아닌지 판별할 수 있음
+  //그냥 게시글의 경우 경로가 그냥 /write일것이기에!
   const post_id = props.match.params.id;
+  //포스트 아이디가 있다면?! 수정할거얌
   const is_edit = post_id ? true : false;
 
   const { history } = props;
-
+  //수정할 때 리덕스에서 가져오는 포스트리스트
   let _post = is_edit ? post_list.find((p) => p.id === post_id) : null;
-
+  //포스특사 있는 경우 포스트를 넣어주기! 아니면 없다!
   const [contents, setContents] = React.useState(_post ? _post.contents : "");
 
+  //수정리스트에서 새로고침했을 경우 리덕스에 정보가 리셋되니까 뒤로가게하기
   React.useEffect(() => {
     if (is_edit && !_post) {
       console.log("포스트 정보가 없어요!");
@@ -29,7 +34,7 @@ const PostWrite = (props) => {
 
       return;
     }
-
+    //수정모두일 때 가져오기ㅠ
     if (is_edit) {
       dispatch(imageActions.setPreview(_post.image_url));
     }
@@ -91,6 +96,7 @@ const PostWrite = (props) => {
 
       <Grid padding="16px">
         <Input
+          //위에 useState에서 가져온 내용
           value={contents}
           _onChange={changeContents}
           label="게시글 내용"

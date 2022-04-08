@@ -5,8 +5,17 @@ import React from "react";
 
 import { Grid, Image, Text, Button } from "../elements";
 import { history } from "../redux/configurestore";
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Post = (props) => {
+  const dispatch = useDispatch();
+  const post_id = props.id;
+  console.log(post_id);
+  const deletePost = () => {
+    dispatch(postActions.deletePostFB(post_id));
+  };
+
   return (
     <React.Fragment>
       <Grid>
@@ -16,6 +25,8 @@ const Post = (props) => {
             <Text bold>{props.user_info.user_name}</Text>
           </Grid>
           <Grid is_flex width="auto">
+            {/* 프롭스에 버튼이 있는 경우에만 버튼을 보여줘! */}
+            <Text>{props.insert_dt}</Text>
             {props.is_me && (
               <Button
                 width="auto"
@@ -28,7 +39,16 @@ const Post = (props) => {
                 수정
               </Button>
             )}
-            <Text>{props.insert_dt}</Text>
+            {props.is_me && (
+              <Button
+                width="auto"
+                padding="4px"
+                margin="4px"
+                _onClick={deletePost}
+              >
+                삭제
+              </Button>
+            )}
           </Grid>
         </Grid>
         <Grid padding="16px">
@@ -40,6 +60,9 @@ const Post = (props) => {
         <Grid padding="16px">
           <Text margin="0px" bold>
             댓글 {props.comment_cnt}개
+          </Text>
+          <Text margin="0px" bold>
+            좋아요 {props.comment_cnt}개
           </Text>
         </Grid>
       </Grid>

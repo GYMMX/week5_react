@@ -19,7 +19,9 @@ const Card = (props) => {
 };
 
 Card.defaultProps = {
-  image_url: "http://via.placeholder.com/400x300",
+  user_name: "",
+  image_url: "",
+  post_id: null,
 };
 
 export default Card;

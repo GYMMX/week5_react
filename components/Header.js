@@ -9,6 +9,7 @@ import Permit from "../shared/Permit";
 
 const Header = (props) => {
   const dispatch = useDispatch();
+  //로그인을 했다 안했다
   const is_login = useSelector((state) => state.user.is_login);
 
   const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;

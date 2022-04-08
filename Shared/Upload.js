@@ -35,19 +35,14 @@ const Upload = (props) => {
   };
 
   const uploadFB = () => {
+    // if (!fileInput.current || fileInput.current.files.length === 0) {
+    //   window.alert("파일을 선택해주세요!");
+    //   return;
+    // }
     let image = fileInput.current.files[0];
     dispatch(imageActions.uploadImageFB(image));
-    // const _upload = storage.ref(`images/${image.name}`).put(image);
-    //뭐를 업로드했는지 보여주는 콘솔
-    // _upload.then((snapshot) => {
-    //   console.log(snapshot);
-    //콘솔에 업로드한 사진의 url이 나옴
-    //이 파일을 리덕스에 넣어놔야 다른 컴포넌트에서 알 수 있음
-    //   snapshot.ref.getDownloadURL().then((url) => {
-    //     console.log(url);
-    //   });
-    // });
   };
+
   return (
     <React.Fragment>
       <input

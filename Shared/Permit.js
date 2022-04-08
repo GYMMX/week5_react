@@ -10,6 +10,7 @@ const Permit = (props) => {
   const is_session = sessionStorage.getItem(_session_key) ? true : false;
 
   if (is_session && is_login) {
+    //트루일 때 반환
     return <React.Fragment>{props.children}</React.Fragment>;
   }
 

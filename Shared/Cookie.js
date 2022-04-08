@@ -22,7 +22,9 @@ const getCookie = (name) => {
 //exp=5하면 exp를 받아오지 않아도 기본 값을 지정해줘서 사용할 수 있음
 const setCookie = (name, value, exp = 5) => {
   let date = new Date();
+  //일시설정해주기
   date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+  //내가 원하는 값 파싱하기
   document.cookie = `${name}=${value}; expires=${date.toUTCString()}`;
 };
 
